@@ -1,0 +1,17 @@
+syntax = "proto3";
+package proto.ui;
+
+import "google/protobuf/timestamp.proto";
+import "proto/some/some.proto";
+
+message RouteDataProto {
+  bytes id = 1;
+
+  bytes display_text_localization_id = 2;
+  string image_url = 3;
+  bool is_in_root = 4;
+  string url = 5;
+
+  google.protobuf.Timestamp some_timestamp = 6;
+  proto.some.SomeProto some_proto = 7;
+}

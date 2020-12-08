@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk" InitialTargets="CompileProto">
+
+    <PropertyGroup>
+        <TargetFramework>net472</TargetFramework>
+        <AssemblyType>Exe</AssemblyType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Google.Protobuf" Version="3.14.0" />
+        <PackageReference Include="Grpc" Version="2.33.1" />
+        <PackageReference Include="Grpc.Tools" Version="2.33.1" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="../LibraryWhichProvidesSomeProtos/LibraryWhichProvidesSomeProtos.csproj" />
+    </ItemGroup>
+
+    <Target Name="CompileProto">
+        <ItemGroup>
+            <SomeProtoDir Include="../LibraryWhichProvidesSomeProtos/proto/**/*.proto" />
+            <LocalProtoDir Include="proto_local/**/*.proto" />
+        </ItemGroup>
+        <Copy SourceFiles="@(SomeProtoDir)" DestinationFolder="proto/%(RecursiveDir)" />
+        <Copy SourceFiles="@(LocalProtoDir)" DestinationFolder="proto/%(RecursiveDir)" />
+        <Exec Command="sh bash/compile_proto_js.sh" />
+    </Target>
+    <ItemGroup>
+        <!--        do not compile, because we refer project LibraryWhichProvidesSomeProtos.csproj with already compiled classes-->
+        <Protobuf Include="proto/**/*.proto" CompileOutputs="false" />
+        <Protobuf Update="proto/ui/**/*.proto" CompileOutputs="true" />
+    </ItemGroup>
+
+</Project>

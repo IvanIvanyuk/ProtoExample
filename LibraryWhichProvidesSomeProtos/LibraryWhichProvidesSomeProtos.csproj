@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net472</TargetFramework>
+        <RootNamespace>LibraryWhichProvidesSomeProtos</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Google.Protobuf" Version="3.14.0"/>
+        <PackageReference Include="Grpc" Version="2.33.1"/>
+        <PackageReference Include="Grpc.Tools" Version="2.33.1" PrivateAssets="All"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Protobuf Include="proto/**/*.proto"/>
+    </ItemGroup>
+
+</Project>
