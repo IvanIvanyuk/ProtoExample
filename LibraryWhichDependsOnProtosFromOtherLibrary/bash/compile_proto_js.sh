@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# Needed to compile type definitions
 npm i --global protoc-gen-grpc-web
 
 IN_DIR="proto"
